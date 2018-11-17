@@ -46,7 +46,7 @@ function preload() {
     this.load.image('background3', 'assets/img/background/bg3.png')
     this.load.spritesheet('btnStart', 'assets/img/other/btnStart.png', 193, 71)
     this.load.spritesheet('monster1', 'assets/img/monster/monster1.png', 225, 178)
-    this.load.image('crosshair', 'assets/img/other/crosshair1.png')
+    this.load.image('crosshair', 'assets/img/other/crosshair.png')
 }
 
 function create() {
