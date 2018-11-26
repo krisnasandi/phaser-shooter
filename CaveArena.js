@@ -120,7 +120,7 @@ Game.CaveArena.prototype = {
         this.introText.visible = true
 
         setTimeout(() => {
-            this.introText.text = 'Choice ma bro'
+            this.introText.text = 'Pick menu ma bro'
             this.btnFinish()
         }, 1000);
     },

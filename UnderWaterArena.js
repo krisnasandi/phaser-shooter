@@ -120,7 +120,7 @@ Game.UnderWaterArena.prototype = {
         this.introText.visible = true
 
         setTimeout(() => {
-            this.introText.text = 'Choice ma bro'
+            this.introText.text = 'Pick menu ma bro'
             this.btnGameOver()
         }, 1000);
     },
