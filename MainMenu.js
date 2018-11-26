@@ -12,17 +12,17 @@ Game.MainMenu.prototype = {
         }, this, 2, 1, 0)
 
         button2 = game.add.button(game.world.centerX - 109, 350, 'button-cave', function () {
-            this.state.start('SkyArena')
+            this.state.start('CaveArena')
         }, this, 2, 1, 0)
 
         button3 = game.add.button(game.world.centerX - 109, 450, 'button-uw', function () {
-            this.state.start('SkyArena')
+            this.state.start('UnderWaterArena')
         }, this, 2, 1, 0)
 
         text = game.add.text(272, 565, '© 2018 Last Minute Dev. Ltd. All rights reserved. ', { font: "12px Arial", fill: "#ffffff", align: "center" })
     },
 
     update: function (game) {
-
+        
     },
 }
