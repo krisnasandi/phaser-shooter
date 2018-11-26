@@ -12,6 +12,8 @@
   <script src="Preloader.js"></script>
   <script src="MainMenu.js"></script>
   <script src="SkyArena.js"></script>
+  <script src="CaveArena.js"></script>
+  <script src="UnderWaterArena.js"></script>
 </head>
 <body>
   <div class="wrapper">
@@ -26,6 +28,8 @@
       game.state.add('Preloader', Game.Preloader)
       game.state.add('MainMenu', Game.MainMenu)
       game.state.add('SkyArena', Game.SkyArena)
+      game.state.add('CaveArena', Game.CaveArena)
+      game.state.add('UnderWaterArena', Game.UnderWaterArena)
       
       game.state.start('Boot')
     }

@@ -3,6 +3,8 @@ Game.SkyArena = function(game) {
     this.score = 0
     this.scoreText
 
+    this.lifeBoss = 25
+
     this.monster = 1
     this.maxMonster = 5
     this.monsters = []
@@ -46,9 +48,15 @@ Game.SkyArena.prototype = {
         this.physics.arcade.enable(this.crosshair)
         this.crosshair.enableBody = true
 
-        this.introText = this.game.add.text(this.game.world.centerX, 150, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" })
+        this.introText = this.game.add.text(this.game.world.centerX, 150, '- click to start -', { font: "40px Arial", fill: "red", align: "center" })
         this.introText.anchor.setTo(0.5, 0.5);
         this.introText.visible = false
+
+        this.input.mouse.capture = true;
+
+        // buttonMenu
+        let btnMainMenu = this.add.button(this.game.world.centerX, 250, 'btnMenu', this.gotoMainMenu, this, 2, 1, 0)
+        btnMainMenu.anchor.setTo(-1, -3.5)
     },
 
     update: function () {
@@ -56,32 +64,45 @@ Game.SkyArena.prototype = {
         this.crosshair.y = this.input.y - 20
 
         for (let i = 0; i < this.monsters.length; i++) {
-            this.physics.arcade.overlap(this.monsters[i].enemy, this.crosshair, this.shot, null, this)
+            this.physics.arcade.overlap(this.monsters[i].enemy, this.crosshair, this.shotMonster, null, this)
         }
 
         for (let i = 0; i < this.allies.length; i++) {
-            this.physics.arcade.overlap(this.allies[i].enemy, this.crosshair, this.shot, null, this)
+            this.physics.arcade.overlap(this.allies[i].enemy, this.crosshair, this.shotAlly, null, this)
         }
     },
 
     render: function () {
         this.game.debug.text('Score: ' + this.score, 45, 32)
     },
-
-    shot: function (enemy) {
+    
+    shotAlly: function(enemy) {
         if (this.input.activePointer.isDown) {
-            if (enemy.key === 'birds') {
-                this.gameOver()
-            }
+            enemy.kill(0)
+            this.gameOver()
+        }
+    },
 
-            if (enemy.key === 'eagles') {
+    shotMonster: function (enemy) {
+        if (this.input.activePointer.isDown) {
+            if (enemy.key === 'boss1') {
+                this.lifeBoss--
+                console.log(this.lifeBoss)
+                if ( this.lifeBoss === 0 ) {
+                    this.score += 10
+                    enemy.kill()
+                    setTimeout(() => {
+                        this.gameEnd()
+                    }, 1000);
+                }
+            } else {
                 enemy.kill()
                 this.score += 5
                 setTimeout(() => {
                     this.createMonster()
                 }, 1000);
             }
-        }    
+        }
     },
 
     gameOver: function() {
@@ -94,12 +115,34 @@ Game.SkyArena.prototype = {
         }, 1000);
     },
 
-    btnGameOver: function() {
-        let btnRestart = this.add.button(this.game.world.centerX, 350, 'btnStart', this.gotoRestart, this, 2, 1, 0)
-        btnRestart.anchor.setTo(0.5, 0.5)
+    gameEnd: function() {
+        this.introText.text = 'Tayoooo Winnn'
+        this.introText.visible = true
 
-        let btnMainMenu = this.add.button(this.game.world.centerX, 250, 'btnStart', this.gotoMainMenu, this, 2, 1, 0)
+        setTimeout(() => {
+            this.introText.text = 'Choice ma bro'
+            this.btnFinish()
+        }, 1000);
+    },
+
+    btnGameOver: function() {
+        let btnMainMenu = this.add.button(this.game.world.centerX, 250, 'btnRestart', this.gotoRestart, this, 2, 1, 0)
         btnMainMenu.anchor.setTo(0.5, 0.5)
+        
+        let btnRestart = this.add.button(this.game.world.centerX, 350, 'btnMenu', this.gotoMainMenu, this, 2, 1, 0)
+        btnRestart.anchor.setTo(0.5, 0.5)
+    },
+
+    btnFinish: function() {
+        let btnMainMenu = this.add.button(this.game.world.centerX, 250, 'btnNext', this.gotoNext, this, 2, 1, 0)
+        btnMainMenu.anchor.setTo(0.5, 0.5)
+        
+        let btnNext = this.add.button(this.game.world.centerX, 350, 'btnMenu', this.gotoMainMenu, this, 2, 1, 0)
+        btnNext.anchor.setTo(0.5, 0.5)
+    },
+
+    gotoNext: function() {
+        this.state.start('CaveArena')
     },
 
     gotoMainMenu: function() {
@@ -108,6 +151,8 @@ Game.SkyArena.prototype = {
     
     gotoRestart: function() {
         this.state.start('SkyArena')
+        this.score = 0
+        this.lifeBoss = 5
     },
 
     createMonster: function() {
@@ -119,7 +164,8 @@ Game.SkyArena.prototype = {
                 crosshair: this.crosshair,
                 score: 5
             }))
-        } else {
+        } 
+        if (this.monsters.length === this.maxMonster) {
             this.monsters.push(new Enemy({
                 index: this.monster++,
                 image: 'boss1',
