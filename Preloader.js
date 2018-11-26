@@ -22,6 +22,10 @@ Game.Preloader.prototype = {
         this.load.spritesheet('bats', 'assets/img/monster/monster2.png', 220, 178)
         this.load.spritesheet('sharks', 'assets/img/monster/monster3.png', 220, 178)
         
+        this.load.spritesheet('boss1', 'assets/img/monster/boss1.png', 220, 178)
+        this.load.spritesheet('boss2', 'assets/img/monster/boss2.png', 220, 178)
+        this.load.spritesheet('boss3', 'assets/img/monster/boss3.png', 220, 178)
+        
         this.load.spritesheet('birds', 'assets/img/allies/ally1.png', 276/2, 70)
         this.load.spritesheet('mans', 'assets/img/allies/ally2.png', 289/2, 219)
         this.load.spritesheet('fishes', 'assets/img/allies/ally3.png', 533/2, 135)
