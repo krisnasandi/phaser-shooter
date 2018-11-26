@@ -16,7 +16,6 @@ Game.Preloader.prototype = {
         this.load.image('cave', 'assets/img/background/bg2.png')
         this.load.image('underwater', 'assets/img/background/bg3.png')
         this.load.image('title', 'assets/img/background/titlescreen.jpg')
-        this.load.image('button', 'assets/img/other/btnStart.png')
 
         this.load.spritesheet('btnStart', 'assets/img/other/btnStart.png', 193, 71)
         this.load.spritesheet('eagles', 'assets/img/monster/monster1.png', 220, 178)
@@ -27,6 +26,10 @@ Game.Preloader.prototype = {
         this.load.spritesheet('mans', 'assets/img/allies/ally2.png', 289/2, 219)
         this.load.spritesheet('fishes', 'assets/img/allies/ally3.png', 533/2, 135)
         
+        this.load.spritesheet('button', 'assets/img/other/btn1.png', 329, 108)
+        this.load.spritesheet('button-sky', 'assets/img/other/btn1.png', 219, 72)
+        this.load.spritesheet('button-cave', 'assets/img/other/btn2.png', 219, 72)
+        this.load.spritesheet('button-uw', 'assets/img/other/btn3.png', 219, 72)
         this.load.image('crosshair', 'assets/img/other/crosshair.png')
     },
 
