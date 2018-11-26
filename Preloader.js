@@ -20,11 +20,11 @@ Game.Preloader.prototype = {
         this.load.spritesheet('btnStart', 'assets/img/other/btnStart.png', 193, 71)
         this.load.spritesheet('eagles', 'assets/img/monster/monster1.png', 220, 178)
         this.load.spritesheet('bats', 'assets/img/monster/monster2.png', 220, 178)
-        this.load.spritesheet('sharks', 'assets/img/monster/monster3.png', 220, 178)
+        this.load.spritesheet('sharks', 'assets/img/monster/monster3.png', 713/2, 178)
         
-        this.load.spritesheet('boss1', 'assets/img/monster/boss1.png', 220, 178)
-        this.load.spritesheet('boss2', 'assets/img/monster/boss2.png', 220, 178)
-        this.load.spritesheet('boss3', 'assets/img/monster/boss3.png', 220, 178)
+        this.load.spritesheet('boss1', 'assets/img/monster/boss1.png', 265, 132)
+        this.load.spritesheet('boss2', 'assets/img/monster/boss2.png', 265, 132)
+        this.load.spritesheet('boss3', 'assets/img/monster/boss3.png', 161, 203)
         
         this.load.spritesheet('birds', 'assets/img/allies/ally1.png', 276/2, 70)
         this.load.spritesheet('mans', 'assets/img/allies/ally2.png', 289/2, 219)
