@@ -1,37 +1,28 @@
-Game.MainMenu = function(game) {
+Game.MainMenu = function(game) {}
 
-}
-
-var titlescreen
+var titlescreen, button, button2, button3, text
 
 Game.MainMenu.prototype = {
-    create:function(game) {
-        this.createButton(game, "Sky Arena", game.world.centerX, game.world.centerY + 32, 56, 100,
-        function() {
-            this.state.start('SkyArena')
-        })
-
+    create: function (game) {        
         titlescreen = game.add.sprite(game.world.centerX, game.world.centerY - 0, 'title')
         titlescreen.anchor.setTo(0.5, 0.5)
+
+        button = game.add.button(game.world.centerX - 109, 250, 'button-sky', function () {
+            this.state.start('SkyArena')
+        }, this, 2, 1, 0)
+
+        button2 = game.add.button(game.world.centerX - 109, 350, 'button-cave', function () {
+            this.state.start('SkyArena')
+        }, this, 2, 1, 0)
+
+        button3 = game.add.button(game.world.centerX - 109, 450, 'button-uw', function () {
+            this.state.start('SkyArena')
+        }, this, 2, 1, 0)
+
+        text = game.add.text(272, 565, '© 2018 Last Minute Dev. Ltd. All rights reserved. ', { font: "12px Arial", fill: "#ffffff", align: "center" })
     },
 
-    update:function(game) {
+    update: function (game) {
 
     },
-
-    createButton: function(game, string, x, y, w, h, callback) {
-        var button1 = game.add.button(x, y, 'button', callback, this, 2, 1, 0)
-
-        button1.anchor.setTo(0.5, 0.5)
-        button1.width = w
-        button1.height = h
-
-        var txt = game.add.text(button1.x, button1.y, string, {
-            font: "14px Arial", 
-            fill: "#fff", 
-            align: "center"
-        })
-
-        txt.anchor.setTo(0.5, 0.5)
-    }
 }
